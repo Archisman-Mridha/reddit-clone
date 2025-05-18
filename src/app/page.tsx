@@ -1,3 +1,5 @@
-export default function Home() {
+"use client"
+
+export default function HomePage() {
   return null
 }

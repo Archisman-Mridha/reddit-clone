@@ -32,6 +32,7 @@ import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import { sprintf } from "sprintf-js"
 import "./globals.css"
+import { ClerkProvider } from "@clerk/nextjs"
 
 const geist = Geist({
   subsets: ["latin"]
@@ -45,7 +46,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={sprintf("%s antialiased", geist.className)}>{children}</body>
+      <body className={sprintf("%s antialiased", geist.className)}>
+        <ClerkProvider>{children}</ClerkProvider>
+      </body>
     </html>
   )
 }
