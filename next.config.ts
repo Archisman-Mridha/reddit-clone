@@ -1,6 +1,13 @@
 import type { NextConfig } from "next"
+import { withSentryConfig, type SentryBuildOptions } from "@sentry/nextjs"
 
-const nextConfig: NextConfig = {
+// Plugin for NextJS that helps you manage the size of your application bundles.
+// It generates a visual report of the size of each package and their dependencies.
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
+})
+
+const coreNextConfig: NextConfig = {
   // The NextJS Compiler, written in Rust using SWC, allows Next.js to transform and minify your
   // JavaScript code for production.
   // This replaces Babel for individual files and Terser for minifying output bundles.
@@ -65,10 +72,49 @@ const nextConfig: NextConfig = {
   }
 }
 
-// Plugin for NextJS that helps you manage the size of your application bundles.
-// It generates a visual report of the size of each package and their dependencies.
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-})
+const sentryConfig: SentryBuildOptions = {
+  // For all available options, see:
+  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-export default withBundleAnalyzer(nextConfig)
+  org: "nan-rt",
+  project: "reddit-clone",
+
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Route browser requests to Sentry through a NextJS rewrite to circumvent ad-blockers.
+  // This can increase your server load as well as your hosting bill.
+  // NOTE : Check that the configured route will not match with your NextJS middleware, otherwise
+  //        reporting of client-side errors will fail.
+  tunnelRoute: "/monitoring",
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+
+  /*
+    Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router
+    route handlers.)
+    See the following for more information:
+
+      (1) https://docs.sentry.io/product/crons/
+    
+      (2) https://vercel.com/docs/cron-jobs
+  */
+  automaticVercelMonitors: true
+}
+
+export default (() => {
+  let nextConfig = withBundleAnalyzer(coreNextConfig)
+
+  if (!process.env.DISABLE_SENTRY) {
+    nextConfig = withSentryConfig(nextConfig, sentryConfig)
+  }
+
+  return nextConfig
+})()
