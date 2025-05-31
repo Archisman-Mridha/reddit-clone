@@ -31,7 +31,7 @@ import "server-only"
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
-import { Providers } from "@/components/providers/providers.component"
+import { Providers } from "@/components/providers/component"
 
 const geist = Geist({
   subsets: ["latin"]

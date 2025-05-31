@@ -8,7 +8,7 @@ const coreNextConfig: NextConfig = {
   // JavaScript code for production.
   // This replaces Babel for individual files and Terser for minifying output bundles.
   compiler: {
-    removeConsole: true
+    removeConsole: process.env.NODE_ENV !== "development"
   },
 
   // Configure the on-screen indicator that gives context about the current route you're viewing
@@ -116,8 +116,7 @@ const withBundleAnalyzer = createBundleAnalyzerPlugin({
 export default (() => {
   let nextConfig = withVanillaExtract(coreNextConfig)
 
-  if (!process.env.DISABLE_SENTRY)
-    nextConfig = withSentryConfig(nextConfig, sentryConfig)
+  if (!process.env.DISABLE_SENTRY) nextConfig = withSentryConfig(nextConfig, sentryConfig)
 
   return withBundleAnalyzer(nextConfig)
 })()
