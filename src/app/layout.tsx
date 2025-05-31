@@ -25,14 +25,13 @@
   Client Components are rendered entirely on the client, without the server-rendered HTML.
 */
 
-// To panic when we accidentanlly import server-only code into the client.
+// To prevent accidentanl import of server-only code in client components.
 import "server-only"
 
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
-import { sprintf } from "sprintf-js"
 import "./globals.css"
-import { ClerkProvider } from "@clerk/nextjs"
+import { Providers } from "@/components/providers/providers.component"
 
 const geist = Geist({
   subsets: ["latin"]
@@ -43,11 +42,16 @@ export const metadata: Metadata = {
   description: "A reddit clone written using NextJS"
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={sprintf("%s antialiased", geist.className)}>
-        <ClerkProvider>{children}</ClerkProvider>
+    <html
+      suppressHydrationWarning={true}
+      lang="en"
+    >
+      <body className={geist.className}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

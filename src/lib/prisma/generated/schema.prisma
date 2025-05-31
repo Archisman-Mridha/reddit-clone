@@ -24,11 +24,9 @@ model User {
 
   joinedSubReddits SubReddit[]
 
-  posts     Post[]
-  postKarma Int    @default(0)
+  posts Post[]
 
-  comments     Comment[]
-  commentKarma Int       @default(0)
+  comments Comment[]
 
   createdAt DateTime @default(now())
 
@@ -62,9 +60,7 @@ model Post {
   content String?
   edited  Boolean @default(false)
 
-  votes Vote[]
-  score Int    @default(0)
-
+  votes    Vote[]
   comments Comment[]
 
   createdAt DateTime @default(now())

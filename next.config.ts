@@ -1,11 +1,7 @@
 import type { NextConfig } from "next"
+import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin"
+import createBundleAnalyzerPlugin from "@next/bundle-analyzer"
 import { withSentryConfig, type SentryBuildOptions } from "@sentry/nextjs"
-
-// Plugin for NextJS that helps you manage the size of your application bundles.
-// It generates a visual report of the size of each package and their dependencies.
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-})
 
 const coreNextConfig: NextConfig = {
   // The NextJS Compiler, written in Rust using SWC, allows Next.js to transform and minify your
@@ -72,6 +68,8 @@ const coreNextConfig: NextConfig = {
   }
 }
 
+const withVanillaExtract = createVanillaExtractPlugin()
+
 const sentryConfig: SentryBuildOptions = {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
@@ -109,12 +107,17 @@ const sentryConfig: SentryBuildOptions = {
   automaticVercelMonitors: true
 }
 
+// Plugin for NextJS that helps you manage the size of your application bundles.
+// It generates a visual report of the size of each package and their dependencies.
+const withBundleAnalyzer = createBundleAnalyzerPlugin({
+  enabled: process.env.ANALYZE === "true"
+})
+
 export default (() => {
-  let nextConfig = withBundleAnalyzer(coreNextConfig)
+  let nextConfig = withVanillaExtract(coreNextConfig)
 
-  if (!process.env.DISABLE_SENTRY) {
+  if (!process.env.DISABLE_SENTRY)
     nextConfig = withSentryConfig(nextConfig, sentryConfig)
-  }
 
-  return nextConfig
+  return withBundleAnalyzer(nextConfig)
 })()

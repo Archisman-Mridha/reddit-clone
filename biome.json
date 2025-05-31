@@ -2,12 +2,27 @@
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 100
+    "lineWidth": 90
+  },
+
+  "linter": {
+    "rules": {
+      "style": {
+        "noNonNullAssertion": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      },
+      "complexity": {
+        "useArrowFunction": "off"
+      }
+    }
   },
 
   "javascript": {
     "formatter": {
       "arrowParentheses": "always",
+      "attributePosition": "multiline",
       "bracketSameLine": false,
       "bracketSpacing": true,
       "jsxQuoteStyle": "double",
