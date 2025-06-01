@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
       await prismaClient.user.create({
         data: {
-          clerkID: id,
+          id,
           email: email_address,
           username: username!
         }

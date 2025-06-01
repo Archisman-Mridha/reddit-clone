@@ -1422,80 +1422,90 @@ export namespace Prisma {
   }
 
   export type UserAvgAggregateOutputType = {
-    id: number | null
+    postKarma: number | null
+    commentKarma: number | null
   }
 
   export type UserSumAggregateOutputType = {
-    id: number | null
+    postKarma: number | null
+    commentKarma: number | null
   }
 
   export type UserMinAggregateOutputType = {
-    id: number | null
-    clerkID: string | null
+    id: string | null
     email: string | null
     username: string | null
     name: string | null
     bio: string | null
+    postKarma: number | null
+    commentKarma: number | null
     createdAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
-    clerkID: string | null
+    id: string | null
     email: string | null
     username: string | null
     name: string | null
     bio: string | null
+    postKarma: number | null
+    commentKarma: number | null
     createdAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    clerkID: number
     email: number
     username: number
     name: number
     bio: number
+    postKarma: number
+    commentKarma: number
     createdAt: number
     _all: number
   }
 
 
   export type UserAvgAggregateInputType = {
-    id?: true
+    postKarma?: true
+    commentKarma?: true
   }
 
   export type UserSumAggregateInputType = {
-    id?: true
+    postKarma?: true
+    commentKarma?: true
   }
 
   export type UserMinAggregateInputType = {
     id?: true
-    clerkID?: true
     email?: true
     username?: true
     name?: true
     bio?: true
+    postKarma?: true
+    commentKarma?: true
     createdAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    clerkID?: true
     email?: true
     username?: true
     name?: true
     bio?: true
+    postKarma?: true
+    commentKarma?: true
     createdAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    clerkID?: true
     email?: true
     username?: true
     name?: true
     bio?: true
+    postKarma?: true
+    commentKarma?: true
     createdAt?: true
     _all?: true
   }
@@ -1587,12 +1597,13 @@ export namespace Prisma {
   }
 
   export type UserGroupByOutputType = {
-    id: number
-    clerkID: string
+    id: string
     email: string
     username: string
     name: string | null
     bio: string | null
+    postKarma: number
+    commentKarma: number
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1617,11 +1628,12 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    clerkID?: boolean
     email?: boolean
     username?: boolean
     name?: boolean
     bio?: boolean
+    postKarma?: boolean
+    commentKarma?: boolean
     createdAt?: boolean
     joinedSubReddits?: boolean | User$joinedSubRedditsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -1631,35 +1643,38 @@ export namespace Prisma {
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    clerkID?: boolean
     email?: boolean
     username?: boolean
     name?: boolean
     bio?: boolean
+    postKarma?: boolean
+    commentKarma?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    clerkID?: boolean
     email?: boolean
     username?: boolean
     name?: boolean
     bio?: boolean
+    postKarma?: boolean
+    commentKarma?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
-    clerkID?: boolean
     email?: boolean
     username?: boolean
     name?: boolean
     bio?: boolean
+    postKarma?: boolean
+    commentKarma?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clerkID" | "email" | "username" | "name" | "bio" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "name" | "bio" | "postKarma" | "commentKarma" | "createdAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     joinedSubReddits?: boolean | User$joinedSubRedditsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -1677,12 +1692,13 @@ export namespace Prisma {
       comments: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      clerkID: string
+      id: string
       email: string
       username: string
       name: string | null
       bio: string | null
+      postKarma: number
+      commentKarma: number
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2110,12 +2126,13 @@ export namespace Prisma {
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
-    readonly clerkID: FieldRef<"User", 'String'>
+    readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly bio: FieldRef<"User", 'String'>
+    readonly postKarma: FieldRef<"User", 'Int'>
+    readonly commentKarma: FieldRef<"User", 'Int'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -3728,33 +3745,35 @@ export namespace Prisma {
 
   export type PostAvgAggregateOutputType = {
     id: number | null
-    ownerID: number | null
     subRedditID: number | null
+    score: number | null
   }
 
   export type PostSumAggregateOutputType = {
     id: number | null
-    ownerID: number | null
     subRedditID: number | null
+    score: number | null
   }
 
   export type PostMinAggregateOutputType = {
     id: number | null
-    ownerID: number | null
+    ownerID: string | null
     subRedditID: number | null
     title: string | null
     content: string | null
     edited: boolean | null
+    score: number | null
     createdAt: Date | null
   }
 
   export type PostMaxAggregateOutputType = {
     id: number | null
-    ownerID: number | null
+    ownerID: string | null
     subRedditID: number | null
     title: string | null
     content: string | null
     edited: boolean | null
+    score: number | null
     createdAt: Date | null
   }
 
@@ -3765,6 +3784,7 @@ export namespace Prisma {
     title: number
     content: number
     edited: number
+    score: number
     createdAt: number
     _all: number
   }
@@ -3772,14 +3792,14 @@ export namespace Prisma {
 
   export type PostAvgAggregateInputType = {
     id?: true
-    ownerID?: true
     subRedditID?: true
+    score?: true
   }
 
   export type PostSumAggregateInputType = {
     id?: true
-    ownerID?: true
     subRedditID?: true
+    score?: true
   }
 
   export type PostMinAggregateInputType = {
@@ -3789,6 +3809,7 @@ export namespace Prisma {
     title?: true
     content?: true
     edited?: true
+    score?: true
     createdAt?: true
   }
 
@@ -3799,6 +3820,7 @@ export namespace Prisma {
     title?: true
     content?: true
     edited?: true
+    score?: true
     createdAt?: true
   }
 
@@ -3809,6 +3831,7 @@ export namespace Prisma {
     title?: true
     content?: true
     edited?: true
+    score?: true
     createdAt?: true
     _all?: true
   }
@@ -3901,11 +3924,12 @@ export namespace Prisma {
 
   export type PostGroupByOutputType = {
     id: number
-    ownerID: number
+    ownerID: string
     subRedditID: number
     title: string
     content: string | null
     edited: boolean
+    score: number
     createdAt: Date
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
@@ -3935,6 +3959,7 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     edited?: boolean
+    score?: boolean
     createdAt?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     subReddit?: boolean | Post$subRedditArgs<ExtArgs>
@@ -3950,6 +3975,7 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     edited?: boolean
+    score?: boolean
     createdAt?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     subReddit?: boolean | Post$subRedditArgs<ExtArgs>
@@ -3962,6 +3988,7 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     edited?: boolean
+    score?: boolean
     createdAt?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     subReddit?: boolean | Post$subRedditArgs<ExtArgs>
@@ -3974,10 +4001,11 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     edited?: boolean
+    score?: boolean
     createdAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerID" | "subRedditID" | "title" | "content" | "edited" | "createdAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerID" | "subRedditID" | "title" | "content" | "edited" | "score" | "createdAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | UserDefaultArgs<ExtArgs>
     subReddit?: boolean | Post$subRedditArgs<ExtArgs>
@@ -4004,11 +4032,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      ownerID: number
+      ownerID: string
       subRedditID: number
       title: string
       content: string | null
       edited: boolean
+      score: number
       createdAt: Date
     }, ExtArgs["result"]["post"]>
     composites: {}
@@ -4438,11 +4467,12 @@ export namespace Prisma {
    */
   interface PostFieldRefs {
     readonly id: FieldRef<"Post", 'Int'>
-    readonly ownerID: FieldRef<"Post", 'Int'>
+    readonly ownerID: FieldRef<"Post", 'String'>
     readonly subRedditID: FieldRef<"Post", 'Int'>
     readonly title: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
     readonly edited: FieldRef<"Post", 'Boolean'>
+    readonly score: FieldRef<"Post", 'Int'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
   }
     
@@ -6107,21 +6137,19 @@ export namespace Prisma {
   export type CommentAvgAggregateOutputType = {
     id: number | null
     postID: number | null
-    ownerID: number | null
     score: number | null
   }
 
   export type CommentSumAggregateOutputType = {
     id: number | null
     postID: number | null
-    ownerID: number | null
     score: number | null
   }
 
   export type CommentMinAggregateOutputType = {
     id: number | null
     postID: number | null
-    ownerID: number | null
+    ownerID: string | null
     comment: string | null
     edited: boolean | null
     score: number | null
@@ -6131,7 +6159,7 @@ export namespace Prisma {
   export type CommentMaxAggregateOutputType = {
     id: number | null
     postID: number | null
-    ownerID: number | null
+    ownerID: string | null
     comment: string | null
     edited: boolean | null
     score: number | null
@@ -6153,14 +6181,12 @@ export namespace Prisma {
   export type CommentAvgAggregateInputType = {
     id?: true
     postID?: true
-    ownerID?: true
     score?: true
   }
 
   export type CommentSumAggregateInputType = {
     id?: true
     postID?: true
-    ownerID?: true
     score?: true
   }
 
@@ -6284,7 +6310,7 @@ export namespace Prisma {
   export type CommentGroupByOutputType = {
     id: number
     postID: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited: boolean
     score: number
@@ -6384,7 +6410,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       postID: number
-      ownerID: number
+      ownerID: string
       comment: string
       edited: boolean
       score: number
@@ -6817,7 +6843,7 @@ export namespace Prisma {
   interface CommentFieldRefs {
     readonly id: FieldRef<"Comment", 'Int'>
     readonly postID: FieldRef<"Comment", 'Int'>
-    readonly ownerID: FieldRef<"Comment", 'Int'>
+    readonly ownerID: FieldRef<"Comment", 'String'>
     readonly comment: FieldRef<"Comment", 'String'>
     readonly edited: FieldRef<"Comment", 'Boolean'>
     readonly score: FieldRef<"Comment", 'Int'>
@@ -7276,11 +7302,12 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    clerkID: 'clerkID',
     email: 'email',
     username: 'username',
     name: 'name',
     bio: 'bio',
+    postKarma: 'postKarma',
+    commentKarma: 'commentKarma',
     createdAt: 'createdAt'
   };
 
@@ -7304,6 +7331,7 @@ export namespace Prisma {
     title: 'title',
     content: 'content',
     edited: 'edited',
+    score: 'score',
     createdAt: 'createdAt'
   };
 
@@ -7365,20 +7393,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -7389,6 +7403,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -7448,12 +7476,13 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
-    clerkID?: StringFilter<"User"> | string
+    id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
+    postKarma?: IntFilter<"User"> | number
+    commentKarma?: IntFilter<"User"> | number
     createdAt?: DateTimeFilter<"User"> | Date | string
     joinedSubReddits?: SubRedditListRelationFilter
     posts?: PostListRelationFilter
@@ -7462,11 +7491,12 @@ export namespace Prisma {
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    clerkID?: SortOrder
     email?: SortOrder
     username?: SortOrder
     name?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
     createdAt?: SortOrder
     joinedSubReddits?: SubRedditOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
@@ -7474,8 +7504,7 @@ export namespace Prisma {
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    clerkID?: string
+    id?: string
     email?: string
     username?: string
     AND?: UserWhereInput | UserWhereInput[]
@@ -7483,19 +7512,22 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
+    postKarma?: IntFilter<"User"> | number
+    commentKarma?: IntFilter<"User"> | number
     createdAt?: DateTimeFilter<"User"> | Date | string
     joinedSubReddits?: SubRedditListRelationFilter
     posts?: PostListRelationFilter
     comments?: CommentListRelationFilter
-  }, "id" | "clerkID" | "email" | "username">
+  }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    clerkID?: SortOrder
     email?: SortOrder
     username?: SortOrder
     name?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -7508,12 +7540,13 @@ export namespace Prisma {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
-    clerkID?: StringWithAggregatesFilter<"User"> | string
+    id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
+    postKarma?: IntWithAggregatesFilter<"User"> | number
+    commentKarma?: IntWithAggregatesFilter<"User"> | number
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
@@ -7577,11 +7610,12 @@ export namespace Prisma {
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
     id?: IntFilter<"Post"> | number
-    ownerID?: IntFilter<"Post"> | number
+    ownerID?: StringFilter<"Post"> | string
     subRedditID?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringNullableFilter<"Post"> | string | null
     edited?: BoolFilter<"Post"> | boolean
+    score?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     subReddit?: XOR<SubRedditNullableScalarRelationFilter, SubRedditWhereInput> | null
@@ -7596,6 +7630,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrderInput | SortOrder
     edited?: SortOrder
+    score?: SortOrder
     createdAt?: SortOrder
     owner?: UserOrderByWithRelationInput
     subReddit?: SubRedditOrderByWithRelationInput
@@ -7608,11 +7643,12 @@ export namespace Prisma {
     AND?: PostWhereInput | PostWhereInput[]
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
-    ownerID?: IntFilter<"Post"> | number
+    ownerID?: StringFilter<"Post"> | string
     subRedditID?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringNullableFilter<"Post"> | string | null
     edited?: BoolFilter<"Post"> | boolean
+    score?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     subReddit?: XOR<SubRedditNullableScalarRelationFilter, SubRedditWhereInput> | null
@@ -7627,6 +7663,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrderInput | SortOrder
     edited?: SortOrder
+    score?: SortOrder
     createdAt?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
@@ -7640,11 +7677,12 @@ export namespace Prisma {
     OR?: PostScalarWhereWithAggregatesInput[]
     NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Post"> | number
-    ownerID?: IntWithAggregatesFilter<"Post"> | number
+    ownerID?: StringWithAggregatesFilter<"Post"> | string
     subRedditID?: IntWithAggregatesFilter<"Post"> | number
     title?: StringWithAggregatesFilter<"Post"> | string
     content?: StringNullableWithAggregatesFilter<"Post"> | string | null
     edited?: BoolWithAggregatesFilter<"Post"> | boolean
+    score?: IntWithAggregatesFilter<"Post"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
@@ -7721,7 +7759,7 @@ export namespace Prisma {
     NOT?: CommentWhereInput | CommentWhereInput[]
     id?: IntFilter<"Comment"> | number
     postID?: IntFilter<"Comment"> | number
-    ownerID?: IntFilter<"Comment"> | number
+    ownerID?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     edited?: BoolFilter<"Comment"> | boolean
     score?: IntFilter<"Comment"> | number
@@ -7750,7 +7788,7 @@ export namespace Prisma {
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
     postID?: IntFilter<"Comment"> | number
-    ownerID?: IntFilter<"Comment"> | number
+    ownerID?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     edited?: BoolFilter<"Comment"> | boolean
     score?: IntFilter<"Comment"> | number
@@ -7781,7 +7819,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Comment"> | number
     postID?: IntWithAggregatesFilter<"Comment"> | number
-    ownerID?: IntWithAggregatesFilter<"Comment"> | number
+    ownerID?: StringWithAggregatesFilter<"Comment"> | string
     comment?: StringWithAggregatesFilter<"Comment"> | string
     edited?: BoolWithAggregatesFilter<"Comment"> | boolean
     score?: IntWithAggregatesFilter<"Comment"> | number
@@ -7789,11 +7827,13 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditCreateNestedManyWithoutMembersInput
     posts?: PostCreateNestedManyWithoutOwnerInput
@@ -7801,12 +7841,13 @@ export namespace Prisma {
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditUncheckedCreateNestedManyWithoutMembersInput
     posts?: PostUncheckedCreateNestedManyWithoutOwnerInput
@@ -7814,11 +7855,13 @@ export namespace Prisma {
   }
 
   export type UserUpdateInput = {
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUpdateManyWithoutMembersNestedInput
     posts?: PostUpdateManyWithoutOwnerNestedInput
@@ -7826,12 +7869,13 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUncheckedUpdateManyWithoutMembersNestedInput
     posts?: PostUncheckedUpdateManyWithoutOwnerNestedInput
@@ -7839,31 +7883,35 @@ export namespace Prisma {
   }
 
   export type UserCreateManyInput = {
-    id?: number
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7925,6 +7973,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     owner: UserCreateNestedOneWithoutPostsInput
     subReddit?: SubRedditCreateNestedOneWithoutPostsInput
@@ -7934,11 +7983,12 @@ export namespace Prisma {
 
   export type PostUncheckedCreateInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     subRedditID: number
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     votes?: VoteUncheckedCreateNestedManyWithoutPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
@@ -7948,6 +7998,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutPostsNestedInput
     subReddit?: SubRedditUpdateOneWithoutPostsNestedInput
@@ -7957,11 +8008,12 @@ export namespace Prisma {
 
   export type PostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     subRedditID?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     votes?: VoteUncheckedUpdateManyWithoutPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
@@ -7969,11 +8021,12 @@ export namespace Prisma {
 
   export type PostCreateManyInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     subRedditID: number
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
   }
 
@@ -7981,16 +8034,18 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     subRedditID?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8065,7 +8120,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateInput = {
     id?: number
     postID: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited?: boolean
     score?: number
@@ -8086,7 +8141,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     postID?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     edited?: BoolFieldUpdateOperationsInput | boolean
     score?: IntFieldUpdateOperationsInput | number
@@ -8097,7 +8152,7 @@ export namespace Prisma {
   export type CommentCreateManyInput = {
     id?: number
     postID: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited?: boolean
     score?: number
@@ -8114,22 +8169,11 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     postID?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     edited?: BoolFieldUpdateOperationsInput | boolean
     score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -8160,6 +8204,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -8210,56 +8265,45 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    clerkID?: SortOrder
     email?: SortOrder
     username?: SortOrder
     name?: SortOrder
     bio?: SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
     createdAt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    clerkID?: SortOrder
     email?: SortOrder
     username?: SortOrder
     name?: SortOrder
     bio?: SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
     createdAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    clerkID?: SortOrder
     email?: SortOrder
     username?: SortOrder
     name?: SortOrder
     bio?: SortOrder
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
     createdAt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    postKarma?: SortOrder
+    commentKarma?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8296,6 +8340,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8383,13 +8443,14 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     edited?: SortOrder
+    score?: SortOrder
     createdAt?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
     id?: SortOrder
-    ownerID?: SortOrder
     subRedditID?: SortOrder
+    score?: SortOrder
   }
 
   export type PostMaxOrderByAggregateInput = {
@@ -8399,6 +8460,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     edited?: SortOrder
+    score?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -8409,13 +8471,14 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     edited?: SortOrder
+    score?: SortOrder
     createdAt?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
     id?: SortOrder
-    ownerID?: SortOrder
     subRedditID?: SortOrder
+    score?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -8551,7 +8614,6 @@ export namespace Prisma {
   export type CommentAvgOrderByAggregateInput = {
     id?: SortOrder
     postID?: SortOrder
-    ownerID?: SortOrder
     score?: SortOrder
   }
 
@@ -8578,7 +8640,6 @@ export namespace Prisma {
   export type CommentSumOrderByAggregateInput = {
     id?: SortOrder
     postID?: SortOrder
-    ownerID?: SortOrder
     score?: SortOrder
   }
 
@@ -8630,6 +8691,14 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -8673,14 +8742,6 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutOwnerInput | CommentUpdateWithWhereUniqueWithoutOwnerInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutOwnerInput | CommentUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type SubRedditUncheckedUpdateManyWithoutMembersNestedInput = {
@@ -9036,17 +9097,6 @@ export namespace Prisma {
     deleteMany?: VoteScalarWhereInput | VoteScalarWhereInput[]
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9075,6 +9125,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9084,33 +9145,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -9156,6 +9190,33 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -9253,6 +9314,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     subReddit?: SubRedditCreateNestedOneWithoutPostsInput
     votes?: VoteCreateNestedManyWithoutPostInput
@@ -9265,6 +9327,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     votes?: VoteUncheckedCreateNestedManyWithoutPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
@@ -9356,11 +9419,12 @@ export namespace Prisma {
     OR?: PostScalarWhereInput[]
     NOT?: PostScalarWhereInput | PostScalarWhereInput[]
     id?: IntFilter<"Post"> | number
-    ownerID?: IntFilter<"Post"> | number
+    ownerID?: StringFilter<"Post"> | string
     subRedditID?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
     content?: StringNullableFilter<"Post"> | string | null
     edited?: BoolFilter<"Post"> | boolean
+    score?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
   }
 
@@ -9386,7 +9450,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
     id?: IntFilter<"Comment"> | number
     postID?: IntFilter<"Comment"> | number
-    ownerID?: IntFilter<"Comment"> | number
+    ownerID?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     edited?: BoolFilter<"Comment"> | boolean
     score?: IntFilter<"Comment"> | number
@@ -9394,23 +9458,26 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutJoinedSubRedditsInput = {
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     posts?: PostCreateNestedManyWithoutOwnerInput
     comments?: CommentCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutJoinedSubRedditsInput = {
-    id?: number
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     posts?: PostUncheckedCreateNestedManyWithoutOwnerInput
     comments?: CommentUncheckedCreateNestedManyWithoutOwnerInput
@@ -9425,6 +9492,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     owner: UserCreateNestedOneWithoutPostsInput
     votes?: VoteCreateNestedManyWithoutPostInput
@@ -9433,10 +9501,11 @@ export namespace Prisma {
 
   export type PostUncheckedCreateWithoutSubRedditInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     votes?: VoteUncheckedCreateNestedManyWithoutPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
@@ -9472,12 +9541,13 @@ export namespace Prisma {
     AND?: UserScalarWhereInput | UserScalarWhereInput[]
     OR?: UserScalarWhereInput[]
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: IntFilter<"User"> | number
-    clerkID?: StringFilter<"User"> | string
+    id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
+    postKarma?: IntFilter<"User"> | number
+    commentKarma?: IntFilter<"User"> | number
     createdAt?: DateTimeFilter<"User"> | Date | string
   }
 
@@ -9498,23 +9568,26 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutPostsInput = {
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditCreateNestedManyWithoutMembersInput
     comments?: CommentCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
-    id?: number
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditUncheckedCreateNestedManyWithoutMembersInput
     comments?: CommentUncheckedCreateNestedManyWithoutOwnerInput
@@ -9581,7 +9654,7 @@ export namespace Prisma {
 
   export type CommentUncheckedCreateWithoutPostInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited?: boolean
     score?: number
@@ -9611,23 +9684,26 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutPostsInput = {
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUpdateManyWithoutMembersNestedInput
     comments?: CommentUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUncheckedUpdateManyWithoutMembersNestedInput
     comments?: CommentUncheckedUpdateManyWithoutOwnerNestedInput
@@ -9707,6 +9783,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     owner: UserCreateNestedOneWithoutPostsInput
     subReddit?: SubRedditCreateNestedOneWithoutPostsInput
@@ -9715,11 +9792,12 @@ export namespace Prisma {
 
   export type PostUncheckedCreateWithoutVotesInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     subRedditID: number
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
@@ -9741,7 +9819,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateWithoutVotesInput = {
     id?: number
     postID: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited?: boolean
     score?: number
@@ -9768,6 +9846,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutPostsNestedInput
     subReddit?: SubRedditUpdateOneWithoutPostsNestedInput
@@ -9776,11 +9855,12 @@ export namespace Prisma {
 
   export type PostUncheckedUpdateWithoutVotesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     subRedditID?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -9808,7 +9888,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateWithoutVotesInput = {
     id?: IntFieldUpdateOperationsInput | number
     postID?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     edited?: BoolFieldUpdateOperationsInput | boolean
     score?: IntFieldUpdateOperationsInput | number
@@ -9819,6 +9899,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     owner: UserCreateNestedOneWithoutPostsInput
     subReddit?: SubRedditCreateNestedOneWithoutPostsInput
@@ -9827,11 +9908,12 @@ export namespace Prisma {
 
   export type PostUncheckedCreateWithoutCommentsInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     subRedditID: number
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
     votes?: VoteUncheckedCreateNestedManyWithoutPostInput
   }
@@ -9842,23 +9924,26 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutCommentsInput = {
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditCreateNestedManyWithoutMembersInput
     posts?: PostCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
-    id?: number
-    clerkID: string
+    id?: string
     email: string
     username: string
     name?: string | null
     bio?: string | null
+    postKarma?: number
+    commentKarma?: number
     createdAt?: Date | string
     joinedSubReddits?: SubRedditUncheckedCreateNestedManyWithoutMembersInput
     posts?: PostUncheckedCreateNestedManyWithoutOwnerInput
@@ -9909,6 +9994,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutPostsNestedInput
     subReddit?: SubRedditUpdateOneWithoutPostsNestedInput
@@ -9917,11 +10003,12 @@ export namespace Prisma {
 
   export type PostUncheckedUpdateWithoutCommentsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     subRedditID?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     votes?: VoteUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -9938,23 +10025,26 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutCommentsInput = {
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUpdateManyWithoutMembersNestedInput
     posts?: PostUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     joinedSubReddits?: SubRedditUncheckedUpdateManyWithoutMembersNestedInput
     posts?: PostUncheckedUpdateManyWithoutOwnerNestedInput
@@ -9982,6 +10072,7 @@ export namespace Prisma {
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
   }
 
@@ -10020,6 +10111,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subReddit?: SubRedditUpdateOneWithoutPostsNestedInput
     votes?: VoteUpdateManyWithoutPostNestedInput
@@ -10032,6 +10124,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     votes?: VoteUncheckedUpdateManyWithoutPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
@@ -10043,6 +10136,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10076,43 +10170,48 @@ export namespace Prisma {
 
   export type PostCreateManySubRedditInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     title: string
     content?: string | null
     edited?: boolean
+    score?: number
     createdAt?: Date | string
   }
 
   export type UserUpdateWithoutJoinedSubRedditsInput = {
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUpdateManyWithoutOwnerNestedInput
     comments?: CommentUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutJoinedSubRedditsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     posts?: PostUncheckedUpdateManyWithoutOwnerNestedInput
     comments?: CommentUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutJoinedSubRedditsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    clerkID?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    postKarma?: IntFieldUpdateOperationsInput | number
+    commentKarma?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10120,6 +10219,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutPostsNestedInput
     votes?: VoteUpdateManyWithoutPostNestedInput
@@ -10128,10 +10228,11 @@ export namespace Prisma {
 
   export type PostUncheckedUpdateWithoutSubRedditInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     votes?: VoteUncheckedUpdateManyWithoutPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
@@ -10139,10 +10240,11 @@ export namespace Prisma {
 
   export type PostUncheckedUpdateManyWithoutSubRedditInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     edited?: BoolFieldUpdateOperationsInput | boolean
+    score?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10156,7 +10258,7 @@ export namespace Prisma {
 
   export type CommentCreateManyPostInput = {
     id?: number
-    ownerID: number
+    ownerID: string
     comment: string
     edited?: boolean
     score?: number
@@ -10197,7 +10299,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     edited?: BoolFieldUpdateOperationsInput | boolean
     score?: IntFieldUpdateOperationsInput | number
@@ -10207,7 +10309,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateManyWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
-    ownerID?: IntFieldUpdateOperationsInput | number
+    ownerID?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     edited?: BoolFieldUpdateOperationsInput | boolean
     score?: IntFieldUpdateOperationsInput | number

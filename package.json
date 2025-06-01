@@ -7,9 +7,10 @@
     "db:migrate": "prisma migrate dev --skip-generate",
     "db:deploy": "prisma migrate deploy",
     "dev": "DISABLE_SENTRY=1 NEXT_TURBOPACK_TRACING=1 next dev --turbopack",
-    "build": "ANAZLYZE=true next build --experimental-debug-memory-usage",
     "start": "next start",
+    "ngrok:expose": "ngrok http --url=subtly-aware-gnat.ngrok-free.app 3000",
     "lint": "next lint",
+    "build": "ANAZLYZE=true next build --experimental-debug-memory-usage",
     "trace-server-start": "next internal turbo-trace-server .next/trace-turbopack",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

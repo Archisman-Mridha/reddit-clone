@@ -12,21 +12,20 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
-  // Fields coming from Clerk.
-  clerkID  String @unique
-  email    String @unique @db.VarChar(320)
-  username String @unique @db.VarChar(30)
-
-  name String? @db.VarChar(30)
-  bio  String? @db.VarChar(300)
+  email    String  @unique @db.VarChar(320)
+  username String  @unique @db.VarChar(30)
+  name     String? @db.VarChar(30)
+  bio      String? @db.VarChar(300)
 
   joinedSubReddits SubReddit[]
 
-  posts Post[]
+  posts     Post[]
+  postKarma Int    @default(0)
 
-  comments Comment[]
+  comments     Comment[]
+  commentKarma Int       @default(0)
 
   createdAt DateTime @default(now())
 
@@ -50,8 +49,8 @@ model SubReddit {
 model Post {
   id Int @id @default(autoincrement())
 
-  ownerID Int
-  owner   User @relation(fields: [ownerID], references: [id])
+  ownerID String
+  owner   User   @relation(fields: [ownerID], references: [id])
 
   subRedditID Int
   subReddit   SubReddit? @relation(fields: [subRedditID], references: [id])
@@ -60,7 +59,9 @@ model Post {
   content String?
   edited  Boolean @default(false)
 
-  votes    Vote[]
+  votes Vote[]
+  score Int    @default(0)
+
   comments Comment[]
 
   createdAt DateTime @default(now())
@@ -100,8 +101,8 @@ model Comment {
   postID Int
   post   Post @relation(fields: [postID], references: [id])
 
-  ownerID Int
-  owner   User @relation(fields: [ownerID], references: [id])
+  ownerID String
+  owner   User   @relation(fields: [ownerID], references: [id])
 
   comment String  @db.VarChar(100)
   edited  Boolean @default(false)

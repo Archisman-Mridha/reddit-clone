@@ -32,6 +32,8 @@ export const CreateSubRedditForm: FunctionComponent = () => {
 
   const submitHandler = form.handleSubmit((formData) => createSubRedditHandler(formData))
 
+  console.log(createSubRedditActionState)
+
   return (
     <Form {...form}>
       <form onSubmit={submitHandler}>
