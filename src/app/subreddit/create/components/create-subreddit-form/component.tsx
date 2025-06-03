@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState, type FunctionComponent } from "react"
+import type { FunctionComponent } from "react"
 import { useForm } from "react-hook-form"
 import {
   Form,
@@ -14,6 +14,8 @@ import { Button } from "@/components/shadcn/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { createSubRedditAction } from "./action"
 import { createSubRedditFormSchema } from "./schema"
+import { redirect } from "next/navigation"
+import { useAction } from "next-safe-action/hooks"
 
 export const CreateSubRedditForm: FunctionComponent = () => {
   const form = useForm({
@@ -21,18 +23,30 @@ export const CreateSubRedditForm: FunctionComponent = () => {
     resolver: zodResolver(createSubRedditFormSchema)
   })
 
-  const [
-    createSubRedditActionState,
-    createSubRedditHandler,
-    isCreateSubRedditActionRunning
-  ] = useActionState(createSubRedditAction, {})
+  const {
+    executeAsync: createSubRedditHandler,
+    isExecuting: isCreateSubRedditActionRunning,
+    hasErrored: createSubRedditActionFailed,
+    result: createSubRedditActionOutput
+  } = useAction(createSubRedditAction)
+
+  const submitHandler = form.handleSubmit(async (formData) => {
+    await createSubRedditHandler(formData)
+
+    if (createSubRedditActionFailed) return
+
+    const { subRedditID, error } = createSubRedditActionOutput.data!
+    if (error) return
+
+    // Clear the form and redirect the user to the created sub-reddit page.
+
+    form.reset()
+
+    redirect(`/subreddit/${subRedditID}`)
+  })
 
   const isSubmitDisabled = () =>
     form.formState.isSubmitting || isCreateSubRedditActionRunning
-
-  const submitHandler = form.handleSubmit((formData) => createSubRedditHandler(formData))
-
-  console.log(createSubRedditActionState)
 
   return (
     <Form {...form}>

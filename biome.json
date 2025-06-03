@@ -15,6 +15,9 @@
       },
       "complexity": {
         "useArrowFunction": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
       }
     }
   },

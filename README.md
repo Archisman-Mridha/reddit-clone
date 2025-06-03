@@ -28,3 +28,5 @@ server, so we can sync the new user to the Postgres database.
 - [Is Next.js 15 any good? "use cache" API first look](https://www.youtube.com/watch?v=xWkozeculPo)
 
 - [This Next.js Data Fetching Pattern Is CRITICAL For Every Developer](https://www.youtube.com/watch?v=bKm1rNaCFOo)
+
+- [Learn React Hooks: useActionState - Simply Explained!](https://www.youtube.com/watch?v=NVddtG6syJg)
